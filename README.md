@@ -42,7 +42,7 @@ lib/
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 Adrian Kramarz  
 Flutter Practice Project
