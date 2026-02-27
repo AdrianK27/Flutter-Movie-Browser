@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/pages/moviebrowser_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -10,10 +9,7 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            Text('Profil'),
-            ElevatedButton(
-              onPressed: () {Navigator.push(context, MaterialPageRoute(builder:(context) => const MoviebrowserScreen(),));},
-              child: Text('Przejdź do przeglądania filmów')),
+            Text('Profile'),
           ],
         ),
       ),

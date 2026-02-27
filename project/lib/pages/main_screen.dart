@@ -5,37 +5,44 @@ import 'profile_screen.dart';
 import 'settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final bool isDark;
+  final Function(bool) onThemeChanged;
+
+  const MainScreen({
+    super.key,
+    required this.isDark,
+    required this.onThemeChanged,
+  });
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   int _selectedIndex = 0;
-
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    MoviebrowserScreen(),
-    ProfileScreen(),
-    SettingsScreen(),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> screens = [
+      const HomeScreen(),
+      const MovieBrowserScreen(),
+      const ProfileScreen(),
+      SettingsScreen(
+        isDark: widget.isDark,
+        onThemeChanged: widget.onThemeChanged,
+      ),
+    ];
+
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: screens[_selectedIndex],
 
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
-
         onDestinationSelected: (int index) {
           setState(() {
             _selectedIndex = index;
           });
         },
-
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
