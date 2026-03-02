@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../models/movie.dart';
+import '../services/favorites_service.dart';
 
 class MovieBrowserScreen extends StatefulWidget {
   const MovieBrowserScreen({super.key});
@@ -17,12 +18,11 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
   bool _isLoading = false;
   bool _hasMore = true;
   String _searchQuery = '';
-  
+
   @override
   void initState() {
     super.initState();
     _fetchMovies();
-
     _scrollController.addListener(_onScroll);
   }
 
@@ -109,6 +109,8 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
               itemBuilder: (context, index) {
                 if (index < _movies.length) {
                   final movie = _movies[index];
+                  final isFavorite =
+                      FavoritesService().isFavorite(movie);
 
                   return ListTile(
                     leading: movie.posterPath.isNotEmpty
@@ -120,6 +122,21 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                         : const SizedBox(width: 50),
                     title: Text(movie.title),
                     subtitle: Text("Rating: ${movie.rating}"),
+                    trailing: IconButton(
+                      icon: Icon(
+                        isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color:
+                            isFavorite ? Colors.red : null,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          FavoritesService()
+                              .toggleFavorite(movie);
+                        });
+                      },
+                    ),
                   );
                 } else {
                   return const Padding(
