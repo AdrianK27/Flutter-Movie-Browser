@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project/pages/main_screen.dart';
+import 'package:project/services/favorites_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FavoritesService().loadFavorites();
   runApp(const MyApp());
 }
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../models/movie.dart';
+import 'package:project/models/movie.dart';
 
 class ApiService {
   static const String apiKey = 'ffe654583ac9a0a3d767329647535074';

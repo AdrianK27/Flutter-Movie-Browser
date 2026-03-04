@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
-import '../models/movie.dart';
-import '../services/favorites_service.dart';
+import 'package:project/services/api_service.dart';
+import 'package:project/models/movie.dart';
+import 'package:project/services/favorites_service.dart';
 
 class MovieBrowserScreen extends StatefulWidget {
   const MovieBrowserScreen({super.key});
@@ -130,11 +130,9 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                         color:
                             isFavorite ? Colors.red : null,
                       ),
-                      onPressed: () {
-                        setState(() {
-                          FavoritesService()
-                              .toggleFavorite(movie);
-                        });
+                      onPressed: () async {
+                        await FavoritesService().toggleFavorite(movie);
+                        setState(() {});
                       },
                     ),
                   );
