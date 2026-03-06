@@ -27,10 +27,7 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >=
-            _scrollController.position.maxScrollExtent - 200 &&
-        !_isLoading &&
-        _hasMore) {
+    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200 && !_isLoading && _hasMore) {
       _fetchMovies();
     }
   }
